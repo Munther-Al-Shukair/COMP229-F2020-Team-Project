@@ -1,0 +1,43 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- /my-survey/create -->
+<!-- Crate My survey Content -->
+<main class="containter">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1>
+                <input type="text" id="title" placeholder="Survey Title">
+            </h1>
+
+            <!-- Create Date and Expire Date-->
+            <div>
+                <h6><%= userSurvey.CreateDate %></h6>
+                <input type="text" id="exipireDate" placeholder="Expire Date">
+            </div>
+            <div>
+                <form method="POST" autocomplete="off">
+
+                    <!-- user survey content-->
+                    
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-outline-info mx-auto rounded-circle" id="addComponent">
+                            <i class="fas fa-plus"></i></button>
+                    </div>
+                   
+
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fas fa-edit"></i> Update</button>
+
+                    <a href="/my-survey" class="btn btn-outline-warning">
+                        <i class="fas fa-undo"></i> Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>
