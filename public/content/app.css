@@ -346,3 +346,114 @@ body .register-container .alert {
   border: 1px solid #535353;
   background-color: #535353;
 }
+
+
+/**my survey creeate survey**/
+.btn-container{
+  display: inline-block;
+  overflow: hidden;
+}
+
+#add {
+overflow: hidden;
+  border: 0;
+  outline: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 30px;
+  background-color: rgb(104, 101, 101);
+  color: #fff;
+  font-size: 20px;
+  padding: 0 20px;
+  vertical-align: middle;
+  transition: .2s;
+}
+
+#add::-ms-expand{
+display: none;
+}
+
+#addComponent {
+  display: inline;
+  height: 40px;
+  background-color: rgb(239, 201, 77);
+  vertical-align: middle;
+  color: #fff;
+  width: 40px;
+  margin-left: -40px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#addOptions{
+  list-style: none;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.btn-container:hover #addOptions{
+  display: block;
+}
+
+.btn-container:hover #add {
+  width: 260px;
+  height: 90px;
+  animation: inputAction .4s ease-out;
+}
+
+.btn-container:hover #addComponet{
+  width: 60px;
+  height: 60px;
+  margin-left: -100px;
+  animation: btnAction .4s ease-out;
+}
+
+#down {
+  display: none;
+}
+
+.btn-container:hover #plus{
+  display: none;
+}
+
+.btn-container:hover #down{
+  display: inline;
+}
+
+@keyframes inputAction {
+  0% {
+    width: 260px;
+    height: 40px;
+  }
+  60% {
+    width: 300px;
+    height: 90px;
+  }
+  100% {
+    width: 260px;
+    height: 90px;
+  }
+}
+
+@keyframes btnAction {
+  0% {
+    width: 60px;
+    height: 60px;
+    margin-left: -100px;
+  }
+  60% {
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    margin-left: -100px;
+  }
+}
