@@ -33,6 +33,7 @@ let mcCount = 0;
 
 
 var qContainer = document.getElementById("qContainer");
+qContainer.className = "qContainer";
 var addText = document.getElementById("addTextInput");
 var addOC = document.getElementById("addOCInput");
 var addMC = document.getElementById("addMCInput");
