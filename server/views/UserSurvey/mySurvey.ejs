@@ -1,0 +1,60 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- /my-survey -->
+<!-- My survey Content -->
+<main class="containter">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1>My Survey</h1>
+            <table class="table table-borderless table-hover rounded-lg shadow-sm">
+
+                <!-- Header -->
+                <tr class="d-flex">
+
+                    <th class="text-center col-3">Survey Tilte</th>
+                    <th class="text-center col-2">Create Date</th>
+                    <th class="text-center col-2">Expire Date</th>
+                    <th class="text-center col-2">Completed People</th>
+                    <th class="text-center col-1"></th>
+                    <th class="text-center col-1"></th>
+                    <th class="text-center col-1"></th>
+
+                </tr>
+
+                <!-- Table Content -->
+                <% for(let c = 0; c < userSurveyList.length; c++) {%>
+
+                <tr class="d-flex">
+
+                    <td class="text-center col-3"><%= userSurveyList[c].Title %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].CreateDate %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].ExpireDate %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].CompletedPeople %></td>
+                    <td class="text-center col-1"> <a href="/my-survey/view/<%= userSurveyList[c]._id %>"
+                            class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> View </a></td>
+                    <td class="text-center col-1"> <a href="/my-survey/edit/<%= userSurveyList[c]._id %>"
+                            class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Edit </a></td>
+                    <td class="text-center col-1"> <a href="/my-survey/delete/<%= userSurveyList[c]._id %>"
+                            class="btn btn-primary btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete </a></td>
+                </tr>
+                <% } %>
+            </table>
+
+            <div class="d-flex">
+                <a href="/my-survey/create-survey">
+                    <button type="button" class="btn btn-outline-info mx-auto rounded-circle">
+                        <i class="fas fa-plus"></i></button>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>

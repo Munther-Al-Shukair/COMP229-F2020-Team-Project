@@ -36,7 +36,8 @@ mongoDB.once('open', ()=>{
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let surveyRouter = require('../routes/survey');
-let userSurveyRouter = require('../routes/survey')
+let userSurveyRouter = require('../routes/survey');
+let mySurveyRouter = require('../routes/mySurvey');
 const { Mongoose } = require('mongoose');
 
 let app = express();
@@ -102,6 +103,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveyRouter);
 app.use('/userSurvey', userSurveyRouter);
+app.use('/my-survey',mySurveyRouter);
 
 
 // catch 404 and forward to error handler

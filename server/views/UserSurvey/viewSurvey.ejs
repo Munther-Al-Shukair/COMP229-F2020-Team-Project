@@ -1,0 +1,43 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- /my-survey/view -->
+<!-- View My survey Content -->
+<main class="containter">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1>User Respond Lsit</h1>
+            <table class="table table-borderless table-hover rounded-lg shadow-sm">
+
+                <!-- Header -->
+                <tr class="d-flex">
+
+                    <th class="text-center col-4">User Name</th>
+                    <th class="text-center col-4">Respond Date</th>
+                    <th class="text-center col-4">View</th>
+
+                </tr>
+
+                <!-- Table Content -->
+                <% for(let c = 0; c < surveyRespond.length; c++) {%>
+
+                <tr class="d-flex">
+
+                    <td class="text-center col-4"><%= surveyRespond[c].UserName %></td>
+                    <td class="text-center col-4"><%= surveyRespond[c].RespondDate %></td>
+                    <td class="text-center col-4"> <a href="/my-survey/view/detail/<%= surveyRespond[c]._id %>"
+                            class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> View respond </a></td>
+                </tr>
+                <% } %>
+            </table>
+
+            
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>

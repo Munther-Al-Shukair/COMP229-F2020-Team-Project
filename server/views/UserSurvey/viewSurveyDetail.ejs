@@ -1,0 +1,39 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- /my-survey/view -->
+<!-- View My survey Content -->
+<main class="containter">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= surveyRespond.SurveyTitle %></h1>
+            <h2><%= surveyRespond.RespondDate %></h2>
+            <h2><%= surveyRespond.UserName %></h2>
+            <table class="table table-borderless table-hover rounded-lg shadow-sm">
+
+                <!-- Header -->
+                <tr class="d-flex">
+                    <th class="text-center col-6">Questions</th>
+                    <th class="text-center col-6">Respond</th>
+                </tr>
+
+                <!-- Table Content -->
+                <% for(const [key, value] of Object.entries(surveyRespond.Respond)) {%>
+
+                <tr class="d-flex">
+
+                    <td class="text-center col-6"><%= key %></td>
+                    <td class="text-center col-6"><%= value %></td>
+                </tr>
+                <% } %>
+            </table>
+
+            
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>

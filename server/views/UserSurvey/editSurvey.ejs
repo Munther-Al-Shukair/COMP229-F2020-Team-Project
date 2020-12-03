@@ -1,0 +1,76 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<!-- /my-survey/edit -->
+<!-- Edit My survey Content -->
+<main class="containter">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+
+            <div>
+                <form method="POST" autocomplete="off">
+
+                    <h1>
+                        <input type="text" id="title" name="surveyTitle" value="<%= userSurvey.Title %>">
+                    </h1>
+
+                    <!-- Create Date and Expire Date-->
+                    <div>
+                        <h6><%= userSurvey.CreateDate %> / <%= userSurvey.ExpireDate %> </h6>
+                    </div>
+
+                    <!-- user survey content-->
+                    <% for (const [key, value] of Object.entries(userSurvey.Questions)) {%>
+
+                        <!-- user survey text field -->
+                        <% if (key.includes("textQuestion")) {%>
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" id="textField<%= key %>" name="<%= key %>" value="<%= value %> ">
+                        </fieldset>
+    
+                        <!-- user survey one choice field -->
+                        <% } else if ( key.includes("ocQuestion")) {%>
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="ocField<%= key %>" name="<%= key %>" value="<%= value %> ">
+                        <% } else if (key.includes("ocOption")) {%>
+                            <% for (let i = 0; i < value.length; i++) {%>
+                                <input type="radio" class="form-control" id="<%= value[i] %>"
+                                    name="<%= key %> " value="<%= value[i] %>" disabled>
+                                    <input type="text" class="form-control" id="ocOptField<%= key %>" name="<%= key %>" value="<%= value[i] %> ">
+                                <br>
+                            <% } %>
+                        </fieldset>
+    
+                        <!-- user survey multiple choice field -->
+                        <% } else if (key.includes("mcQuestion")) {%>
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="mcField<%= key %>" name="<%= key %>" value="<%= value %> ">
+                        <% } else if (key.includes("mcOption")) {%>
+                                <% for (let i = 0; i < value.length; i++) {%>
+                                    <input type="checkbox" class="form-control" id="<%= value[i] %>"
+                                        name="<%= value[i] %> " value="<%= value[i] %>" disabled>
+                                        <input type="text" class="form-control" id="mcOptField<%= key %>" name="<%= key %>" value="<%= value[i] %> ">
+                                    <br>
+                                <% } %>
+                        <% } %> 
+                        </fieldset>
+                        <% } %>
+
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fas fa-edit"></i> Update</button>
+
+                    <a href="/my-survey" class="btn btn-outline-warning">
+                        <i class="fas fa-undo"></i> Cancel</a>
+
+                    <a href="/my-survey/delete/<%= userSurvey._id %>" class="btn btn-outline-danger" id="deleteBtn">
+                        <i class="fas fa-trash-alt"></i> Delete</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>
