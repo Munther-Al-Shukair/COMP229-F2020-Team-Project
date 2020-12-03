@@ -1,14 +1,16 @@
 let express = require('express');
+const { type } = require('jquery');
 let reouter = express.Router();
 let mongoose = require('mongoose');
-const survey = require('../models/survey');
+const { aggregate } = require('../models/userSurvey');
 
-let mySurvey = require('../models/userSurvey');
+const  mySurvey = require('../models/userSurvey');
 
 // /my-survey
 module.exports.displayMySurveyPage = (req, res, next) => {
     //find all user survey
-    mySurvey.find((err, userSurvey) => {
+    mySurvey.find({CreatorID: req.user._id},
+        (err, userSurvey) => {
         if (err) {
             return console.error(err);
         }
@@ -34,7 +36,7 @@ module.exports.displayViewPage = (req, res, next) => {
     //find matching surey
     let id = req.params.id;
 
-    survey.findById(id, (err, surveyToView) => {
+    mySurvey.findById(id, (err, surveyToView) => {
         if (err) {
             console.log(err);
             res.end(err);
@@ -50,6 +52,7 @@ module.exports.displayViewPage = (req, res, next) => {
                 })
         }
     });
+    
 }
 
 
@@ -67,20 +70,19 @@ module.exports.displayCreatePage = (req, res, next) => {
 
 //process create page
 module.exports.processCreatePage = (req,res,next)=>{
-    var currentDate = new Date();
+    let currentDate = new Date();
+    let questions = Object.assign({},req.body);
+    delete questions.surveyTitle;
+    delete questions.exipireDate;
     //var question = document.getElementById("question");
     let newUserSurvey = mySurvey({
         "Title": req.body.surveyTitle,
+        "CreatorID":req.user._id,
         "CreatorName": req.user.displayName,
         "CreateDate": currentDate,
         "ExpireDate": currentDate,
         "CompletedPeople": 0,
-        "Questions": 
-        {
-            "Question": "111",
-            "Type": "null",
-            "Options": ["aa","aa"]
-        }
+        "Questions": questions
     });
 
     mySurvey.create(newUserSurvey, (err, Survey) => {
@@ -91,7 +93,10 @@ module.exports.processCreatePage = (req,res,next)=>{
         else{
             res.redirect('/my-survey');
         }
-    })
+    });
+
+    console.log(req.body);
+
 }
 
 
@@ -101,7 +106,7 @@ module.exports.displayEditPage = (req, res, next) => {
     //find matching surey
     let id = req.params.id;
 
-    survey.findById(id, (err, surveyToEdit) => {
+    mySurvey.findById(id, (err, surveyToEdit) => {
         if (err) {
             console.log(err);
             res.end(err);
@@ -113,7 +118,6 @@ module.exports.displayEditPage = (req, res, next) => {
                     userSurvey: surveyToEdit,
                     userID: req.user._id,
                     Email: req.user ? req.user.email : '',
-                    //username: req.user ? req.user.username: '',
                     displayName: req.user ? req.user.displayName : ''
                 })
         }
@@ -134,7 +138,7 @@ module.exports.processEditPage = (req, res, next) => {
         "Questions": req.body.qContainer
     });
 
-    Survey.updateOne({ _id: id }, updatedSurvey, (err) => {
+    mySurvey.updateOne({ _id: id }, updatedSurvey, (err) => {
         if (err) {
             console.log(err);
             res.end(err);

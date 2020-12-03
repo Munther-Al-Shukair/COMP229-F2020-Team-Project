@@ -25,8 +25,14 @@
 
 
 //my survey - create survey
+
+
+let textCount = 0;
+let ocCount = 0;
+let mcCount = 0;
+
+
 var qContainer = document.getElementById("qContainer");
-qContainer.name="Question";
 var addText = document.getElementById("addTextInput");
 var addOC = document.getElementById("addOCInput");
 var addMC = document.getElementById("addMCInput");
@@ -37,13 +43,15 @@ addText.onclick = function () {
     var container = document.createElement("div");
     container.className = "test-question-container";
 
+    //important
     var textInput = document.createElement("input");
     textInput.className = "test-question-input";
-    textInput.id = "text-question";
+    textInput.name = "textQuestion" + textCount;
     textInput.type = "text";
     textInput.placeholder = "Enter a question";
 
     var removeBtn = document.createElement("button");
+    removeBtn.type = "button";
     removeBtn.id = "removeItemBtn";
     removeBtn.textContent = "Remove";
     removeBtn.onclick = function () { qContainer.removeChild(container) };
@@ -52,6 +60,8 @@ addText.onclick = function () {
     qContainer.appendChild(container);
     container.appendChild(textInput);
     container.appendChild(removeBtn);
+
+    textCount++;
 };
 
 
@@ -61,13 +71,17 @@ addOC.onclick = function () {
     var container = document.createElement("div");
     container.className = "OC-question-container";
 
+    //important
     var textInput = document.createElement("input");
+
+    textInput.name = "ocQuestion" + ocCount;
+
     textInput.className = "test-question-input";
-    textInput.id = "text-question";
     textInput.type = "text";
     textInput.placeholder = "Enter the question";
 
     var removeBtn = document.createElement("button");
+    removeBtn.type = "button";
     removeBtn.id = "removeItemBtn";
     removeBtn.textContent = "Remove";
 
@@ -77,6 +91,7 @@ addOC.onclick = function () {
     optionContainer.className = "option-container";
 
     var addQuestionOption = document.createElement("button");
+    addQuestionOption.type = "button";
     addQuestionOption.id = "addQuestionOption";
     addQuestionOption.textContent = "Add Option";
 
@@ -89,13 +104,18 @@ addOC.onclick = function () {
         option.type = "radio";
         option.name = textInput.textContent;
 
+        
         var textLabel = document.createElement("input");
         textLabel.type = "text";
         textLabel.placeholder = "Enter you option";
+        //important
+        textLabel.name = "ocOption" + (ocCount-1);
+
         option.id = textLabel.textContent;
         option.value = textLabel.textContent;
 
         var removeOptBtn = document.createElement("button");
+        removeOptBtn.type = "button";
         removeOptBtn.id = "removeOptBtn";
         removeOptBtn.textContent = "Remove Option";
 
@@ -110,6 +130,7 @@ addOC.onclick = function () {
         ooContainer.appendChild(removeOptBtn);
 
         optionContainer.insertBefore(ooContainer, addQuestionOption);
+        
     };
 
     qContainer.appendChild(container);
@@ -117,6 +138,7 @@ addOC.onclick = function () {
     container.appendChild(removeBtn);
     container.appendChild(optionContainer);
     optionContainer.appendChild(addQuestionOption);
+    ocCount++;
 };
 
 //for multiple choice question
@@ -125,13 +147,15 @@ addMC.onclick = function () {
     var container = document.createElement("div");
     container.className = "MC-question-container";
 
+    //important
     var textInput = document.createElement("input");
     textInput.className = "test-question-input";
-    textInput.id = "text-question";
+    textInput.name = "mcQuestion" + mcCount;
     textInput.type = "text";
     textInput.placeholder = "Enter the question";
 
     var removeBtn = document.createElement("button");
+    removeBtn.type = "button";
     removeBtn.id = "removeItemBtn";
     removeBtn.textContent = "Remove";
 
@@ -141,6 +165,7 @@ addMC.onclick = function () {
     optionContainer.className = "option-container";
 
     var addQuestionOption = document.createElement("button");
+    addQuestionOption.type = "button";
     addQuestionOption.id = "addQuestionOption";
     addQuestionOption.textContent = "Add Option";
 
@@ -152,8 +177,10 @@ addMC.onclick = function () {
         var option = document.createElement("input");
         option.type = "checkbox";
         
+        //important
         var textLabel = document.createElement("input");
         textLabel.type = "text";
+        textLabel.name = "mcOption" + (mcCount-1);
         textLabel.placeholder = "Enter you option";
 
         option.id = textLabel.textContent;
@@ -161,6 +188,7 @@ addMC.onclick = function () {
         option.name = textLabel.textContent;
 
         var removeOptBtn = document.createElement("button");
+        removeOptBtn.type = "button";
         removeOptBtn.id = "removeOptBtn";
         removeOptBtn.textContent = "Remove Option";
 
@@ -182,4 +210,5 @@ addMC.onclick = function () {
     container.appendChild(removeBtn);
     container.appendChild(optionContainer);
     optionContainer.appendChild(addQuestionOption);
+    mcCount++;
 };

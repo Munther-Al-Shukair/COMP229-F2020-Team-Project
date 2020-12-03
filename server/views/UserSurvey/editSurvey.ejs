@@ -7,57 +7,57 @@
 <main class="containter">
     <div class="row">
         <div class="offset-md-1 col-md-10">
-            <h1>
-                <input type="text" id="title" placeholder="<%= userSurvey.Title %>">
-            </h1>
 
-            <!-- Create Date and Expire Date-->
-            <div>
-                <h6><%= userSurvey.CreateDate %> / <%= userSurvey.ExpireDate %> </h6>
-            </div>
             <div>
                 <form method="POST" autocomplete="off">
 
+                    <h1>
+                        <input type="text" id="title" placeholder="<%= userSurvey.Title %>">
+                    </h1>
+
+                    <!-- Create Date and Expire Date-->
+                    <div>
+                        <h6><%= userSurvey.CreateDate %> / <%= userSurvey.ExpireDate %> </h6>
+                    </div>
+
                     <!-- user survey content-->
-                    <% for(int c = 0; c < Object.keys(userSurvey.Questions).length); c++) {%>
+                    <% for(let c = 0; c < (Object.keys(userSurvey.Questions).length); c++) {%>
 
                     <!-- user survey text field -->
-                    <% if (userSurvey.Questions.Type == "text") {%>
+                    <% if (userSurvey.Questions.Type === "text") {%>
                     <fieldset class="form-group">
-                        <input type="text" class="form-control" id="textField<%= c %>" name="textField<%= c %>"
+                        <input type="text" class="form-control" name="textField<%= c %>"
                             placeholder="<%= userSurvey.Questions.Question %>">
                     </fieldset>
 
                     <!-- user survey one choice field -->
-                    <% } else if (userSurvey.Questions.Type == "OC") {%>
+                    <% } else if (userSurvey.Questions.Type === "OC") {%>
                     <fieldset class="form-group">
-                        <input type="text" class="form-control" id="radioButtonField<%= c %>"
+                        <input type="text" class="form-control" name="radioButtonField<%= c %>"
                             placeholder="<%= userSurvey.Questions.Question %>">
-                        <% for (int i == 0; i < userSurvey.Questions.Options.length; i++) {%>
+                        <% for (let i = 0; i < userSurvey.Questions.Options.length; i++) {%>
                         <input type="radio" class="form-control" id="<%= userSurvey.Questions.Options[i] %>"
                             name="radioButtonField<%= c %>" value="<%= userSurvey.Questions.Options[i] %>" readonly>
                         <input type="text" id="rbtnOption<%= [i] %>" name="rbtnOption<%= [i] %>"
-                            placeholder="<%= userSurvey.Questions.Options[i] %>"></input>
+                            placeholder="<%= userSurvey.Questions.Options[i] %>">
                         <br>
                         <% } %>
                     </fieldset>
 
                     <!-- user survey multiple choice field -->
-                    <% } else if (userSurvey.Questions.Type == "MC") {%>
+                    <% } else if (userSurvey.Questions.Type === "MC") {%>
                     <fieldset class="form-group">
-                        <input type="text" class="form-control" id="checkBoxField<%= c %>"
+                        <input type="text" class="form-control" name="checkBoxField<%= c %>"
                             placeholder="<%= userSurvey.Questions.Question %>">
-                        <%  for (int i == 0; i < userSurvey.Questions.Options.length; i++) {%>
+                        <%  for (let i = 0; i < userSurvey.Questions.Options.length; i++) {%>
                         <input type="checkbox" class="form-control" id="<%= userSurvey.Questions.Options[i] %>"
                             name="<%= userSurvey.Questions.Options[i] %>" value="<%= userSurvey.Questions.Options[i] %>"
                             readonly>
-                        <label
-                            for="<%= userSurvey.Questions.Options[i] %>"><%= userSurvey.Questions.Options[i] %></label>
-                        <br>
                         <input type="text" id="chbxOption<%= [i] %>" name="chbxOption<%= [i] %>"
-                            placeholder="<%= userSurvey.Questions.Options[i] %>"></input>
+                            placeholder="<%= userSurvey.Questions.Options[i] %>">
                         <% } %>
                     </fieldset>
+                    <% } %>
                     <% } %>
 
                     <button class="btn btn-outline-success" type="submit">
