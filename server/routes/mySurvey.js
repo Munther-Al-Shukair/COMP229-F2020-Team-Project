@@ -26,8 +26,11 @@ router.get('/create-survey', requireAuth, surveyController.displayCreatePage);
 // POST Router for proccing the Add page - CREATE Operation
 router.post('/create-survey', requireAuth, surveyController.processCreatePage);
 
-//Get routter for displaying the detail survey
+//Get routter for displaying the user survey
 router.get('/view/:id', requireAuth, surveyController.displayViewPage);
+
+//GET router for displaying the survey respond
+router.get('/view/detail/:id', requireAuth, surveyController.displayViewDetailPage);
 
 // GET Router for displaying the Edit page - UPDATE Operation
 router.get('/edit/:id', requireAuth, surveyController.displayEditPage);

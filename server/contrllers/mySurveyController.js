@@ -6,6 +6,8 @@ const { aggregate } = require('../models/userSurvey');
 
 const  mySurvey = require('../models/userSurvey');
 
+const surveyRespond = require('../models/surveyRespond');
+
 // /my-survey
 module.exports.displayMySurveyPage = (req, res, next) => {
     //find all user survey
@@ -31,12 +33,30 @@ module.exports.displayMySurveyPage = (req, res, next) => {
 }
 
 
-// /my-survey/view
+// /my-survey/view/:id
 module.exports.displayViewPage = (req, res, next) => {
     //find matching surey
     let id = req.params.id;
 
-    mySurvey.findById(id, (err, surveyToView) => {
+    surveyRespond.find({SurveyId:id},
+        (err,surveyForRespond) =>{
+            if(err){
+                return console.error(err);
+            }
+            else{
+                res.render('UserSurvey/viewSurvey',
+                {
+                    title:"View My Survey Respond",
+                    surveyRespond: surveyForRespond,
+                    userID: req.user._id,
+                    Email: req.user ? req.user.email : '',
+                    displayName: req.user ? req.user.displayName : ''
+                })
+            }
+        }
+        )
+
+    /**mySurvey.findById(id, (err, surveyToView) => {
         if (err) {
             console.log(err);
             res.end(err);
@@ -46,6 +66,30 @@ module.exports.displayViewPage = (req, res, next) => {
                 {
                     title:"My Survey",
                     userSurvey: surveyToView,
+                    userID: req.user._id,
+                    Email: req.user ? req.user.email : '',
+                    displayName: req.user ? req.user.displayName : ''
+                })
+        }
+    });**/
+    
+}
+
+// /my-survey/view/detail/:id
+module.exports.displayViewDetailPage = (req, res, next) => {
+    //find matching surey
+    let id = req.params.id;
+
+    surveyRespond.findById(id, (err, surveyToView) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            res.render('UserSurvey/viewSurveyDetail',
+                {
+                    title:"View My Survey Respond Detail",
+                    surveyRespond: surveyToView,
                     userID: req.user._id,
                     Email: req.user ? req.user.email : '',
                     displayName: req.user ? req.user.displayName : ''
