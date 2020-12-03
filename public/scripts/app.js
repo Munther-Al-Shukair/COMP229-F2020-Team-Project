@@ -5,7 +5,7 @@
     {
         console.log("App Started...");
 
-        let deleteButtons = document.querySelectorAll('.btn-danger');
+        var deleteButtons = document.querySelectorAll('.btn-danger');
         // for each button which has a btn-danger class
         for(button of deleteButtons)
         {
@@ -27,9 +27,9 @@
 //my survey - create survey
 
 
-let textCount = 0;
-let ocCount = 0;
-let mcCount = 0;
+var textCount = 0;
+var ocCount = 0;
+var mcCount = 0;
 
 
 var qContainer = document.getElementById("qContainer");
