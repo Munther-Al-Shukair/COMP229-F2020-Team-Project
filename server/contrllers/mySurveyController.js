@@ -46,7 +46,6 @@ module.exports.displayViewPage = (req, res, next) => {
                     userSurvey: surveyToView,
                     userID: req.user._id,
                     Email: req.user ? req.user.email : '',
-                    //username: req.user ? req.user.username: '',
                     displayName: req.user ? req.user.displayName : ''
                 })
         }
@@ -67,20 +66,20 @@ module.exports.displayCreatePage = (req, res, next) => {
 }
 
 //process create page
-module.exports.processCreatePage = (req,res,nex)=>{
+module.exports.processCreatePage = (req,res,next)=>{
     var currentDate = new Date();
-    var question = document.getElementById("question");
+    //var question = document.getElementById("question");
     let newUserSurvey = mySurvey({
-        "Title": req.user.surveyTitle,
+        "Title": req.body.surveyTitle,
         "CreatorName": req.user.displayName,
         "CreateDate": currentDate,
-        "ExpireDate": req.user.exipireDate,
+        "ExpireDate": currentDate,
         "CompletedPeople": 0,
         "Questions": 
         {
-            "Question": null,
-            "Type": null,
-            "Options":null
+            "Question": "111",
+            "Type": "null",
+            "Options": ["aa","aa"]
         }
     });
 

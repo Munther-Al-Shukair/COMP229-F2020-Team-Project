@@ -28,10 +28,10 @@
 
                 <tr class="d-flex">
 
-                    <td class="text-center col-3"><%= userSurveyList.Title %></td>
-                    <td class="text-center col-2"><%= userSurveyList.CreateDate %></td>
-                    <td class="text-center col-2"><%= userSurveyList.ExpireDate %></td>
-                    <td class="text-center col-2"><%= userSurveyList.CompletedPeople %></td>
+                    <td class="text-center col-3"><%= userSurveyList[c].Title %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].CreateDate %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].ExpireDate %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].CompletedPeople %></td>
                     <td class="text-center col-1"> <a href="/my-survey/view/<%= userSurveyList[c]._id %>"
                             class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> View </a></td>

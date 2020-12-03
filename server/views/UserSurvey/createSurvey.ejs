@@ -7,20 +7,19 @@
 <main class="containter">
     <div class="row">
         <div class="offset-md-1 col-md-10">
-            <h1>
-                <input type="text" id="surveyTitle" placeholder="Survey Title">
-            </h1>
-
             <!-- Create Date and Expire Date-->
             <div>
                 <h6><%= new Date(); %></h6>
             </div>
             <div>
                 <form method="POST" autocomplete="off">
-                    <input type="text" name="exipireDate" id="exipireDate" placeholder="Expire Date">
+                    <h1>
+                        <input type="text" id="ddsurveyTitle" name="surveyTitle" placeholder="Survey Title">
+                    </h1>
+                    <input type="text" name="exipireDate" id="ddexipireDate" placeholder="Expire Date">
 
                     <!-- user survey content-->
-                    
+
                     <div id="qContainer"></div>
 
                     <div class="d-flex btn-container">
@@ -33,7 +32,7 @@
                             <i class="fas fa-plus" id="plus"></i><i class="fas fa-sort-down" id="down"></i>
                         </button>
                     </div>
-                   
+
 
                     <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-edit"></i> Update</button>
