@@ -129,16 +129,19 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id
 
+    let currentDate = new Date();
+    console.log(req.body);
+    let questions = Object.assign({},req.body);
+    delete questions.surveyTitle;
+    delete questions.exipireDate;
+
     let updatedSurvey = mySurvey({
-        "Title": req.user.surveyTitle,
-        "CreatorName": req.user.displayName,
-        //"CreateDate": currentDate,
-        "ExpireDate": req.user.exipireDate,
-        //"CompletedPeople": 0,
-        "Questions": req.body.qContainer
+        "_id":id,
+        "Title": req.body.surveyTitle,
+        "Questions": questions
     });
 
-    mySurvey.updateOne({ _id: id }, updatedSurvey, (err) => {
+    mySurvey.updateOne({_id: id}, updatedSurvey, (err) => {
         if (err) {
             console.log(err);
             res.end(err);
