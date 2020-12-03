@@ -26,6 +26,7 @@
 
 //my survey - create survey
 var qContainer = document.getElementById("qContainer");
+qContainer.name="Question";
 var addText = document.getElementById("addTextInput");
 var addOC = document.getElementById("addOCInput");
 var addMC = document.getElementById("addMCInput");

@@ -7,7 +7,12 @@ let userSurveyModel = mongoose.Schema({
     CreateDate: Date ,
     ExpireDate: Date, 
     CompletedPeople: Number,
-    Quetions: Object
+    Questions: 
+    {
+        Question: String,
+        Type: String,
+        Options: Array
+    }
 },
 {
     collection: "userSurvey"

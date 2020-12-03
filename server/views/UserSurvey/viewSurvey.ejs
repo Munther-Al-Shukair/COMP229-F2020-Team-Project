@@ -17,7 +17,7 @@
                 <form action="">
 
                     <!-- user survey content-->
-                    <% for(int c = 0; c < Object.keys(userSurvey.Questions).length); c++) {%>
+                    <% for(int c = 0; c < userSurvey.length; c++) {%>
 
                     <!-- user survey text field -->
                     <% if (userSurvey.Questions.Type == "text") {%>
@@ -52,6 +52,7 @@
                         <br>
                         <% } %>
                     </fieldset>
+                    <% } %>
                     <% } %>
 
                 </form>

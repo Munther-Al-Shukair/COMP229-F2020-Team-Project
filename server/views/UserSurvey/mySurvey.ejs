@@ -7,7 +7,7 @@
 <main class="containter">
     <div class="row">
         <div class="offset-md-1 col-md-10">
-            <h1>Title</h1>
+            <h1>My Survey</h1>
             <table class="table table-borderless table-hover rounded-lg shadow-sm">
 
                 <!-- Header -->
@@ -32,13 +32,13 @@
                     <td class="text-center col-2"><%= userSurveyList.CreateDate %></td>
                     <td class="text-center col-2"><%= userSurveyList.ExpireDate %></td>
                     <td class="text-center col-2"><%= userSurveyList.CompletedPeople %></td>
-                    <td class="text-center col-1"> <a href="/my-survey/view/<%= userSurveyList[count]._id %>"
+                    <td class="text-center col-1"> <a href="/my-survey/view/<%= userSurveyList[c]._id %>"
                             class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> View </a></td>
-                    <td class="text-center col-1"> <a href="/my-survey/edit/<%= userSurveyList[count]._id %>"
+                    <td class="text-center col-1"> <a href="/my-survey/edit/<%= userSurveyList[c]._id %>"
                             class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> Edit </a></td>
-                    <td class="text-center col-1"> <a href="/my-survey/delete/<%= userSurveyList[count]._id %>"
+                    <td class="text-center col-1"> <a href="/my-survey/delete/<%= userSurveyList[c]._id %>"
                             class="btn btn-primary btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete </a></td>
                 </tr>
@@ -46,7 +46,7 @@
             </table>
 
             <div class="d-flex">
-                <a href="/my-survey/create">
+                <a href="/my-survey/create-survey">
                     <button type="button" class="btn btn-outline-info mx-auto rounded-circle">
                         <i class="fas fa-plus"></i></button>
                 </a>
