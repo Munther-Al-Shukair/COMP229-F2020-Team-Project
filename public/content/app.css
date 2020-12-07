@@ -16,6 +16,11 @@
   height: 120px;
 }
 
+.containter{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 /**footer {
   position: fixed ;
   text-align: center;
@@ -462,7 +467,7 @@ display: none;
 
 /* create survey layout */
 .csAllContainer{
-  max-width: 980px;
+  width: 980px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -477,7 +482,9 @@ display: none;
 .test-question-container, .OC-question-container, .MC-question-container{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   width: 100%;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
   padding: 20px;
   align-items: center;
 }
@@ -488,13 +495,198 @@ display: none;
   outline: 0;
   color: rgb(0, 0, 0);
   margin: 20px 0;
-  display: block;
-  width: 100%;
+  display:inline-block;
+  width: 75%;
   padding: 5px 0;
+  margin-right: 10%;
   transition: .2s;
   border-bottom: 1px solid rgb(114, 114, 114);
 }
 
+#ddsurveyTitle{
+  width: 100%;
+}
+
 .option-container input{
   width: 500px;
+}
+
+/*create survey btn layout*/
+.btnUpdate-container{
+  display: block;
+  width: max-content;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  position: fixed;
+  z-index: auto;
+  overflow: hidden;
+  right: 15%;
+  bottom: 25%;
+}
+.btnCreateSurvey{
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: #FFFFFF;
+  color: #13de6e;
+}
+.btnCancelSurvey{
+  color: #DE4313;
+}
+
+/*create survey option css*/
+.btnOpt-container{
+  display: block;
+  width: max-content;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  position: fixed;
+  z-index: auto;
+  overflow: hidden;
+  right: 15%;
+  bottom: 45%;
+}
+
+.btnOptUl{
+  width: max-content;
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.liOpt{
+  display: block;
+  padding: 10px;
+
+}
+#addTextInput{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+#addMCInput{
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.liOpt:hover{
+  background-color: aliceblue;
+  
+}
+
+.liOpt:hover .tooltiptext{
+  visibility: visible;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding:5px;
+  margin-left: 10px;
+
+  /* Position the tooltip */
+  position: fixed;
+  z-index: 4;
+}
+
+
+
+/* edit survey stylesheet*/
+.editSurveyContainer{
+  width: 980px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.editContainer{
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.edit-test-question-container, .edit-oCquestion-container, .edit-test-question-container{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.editSurveyContainer input{
+  border: 0;
+  background: none;
+  outline: 0;
+  color: rgb(0, 0, 0);
+  margin: 20px 0;
+  display:inline-block;
+  width: 75%;
+  padding: 5px 0;
+  margin-right: 10%;
+  transition: .2s;
+  border-bottom: 1px solid rgb(114, 114, 114);
+}
+
+.editSurveyContainer input:hover{
+  color: rgb(105, 105, 105);
+  border-bottom: 1px solid rgb(105, 105, 105);
+}
+
+
+
+/*take survey*/
+.takeSurveyContainer{
+  width: 980px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.takeContainer{
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.take-test-question-container, .take-oCquestion-container, .take-test-question-containerr{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.take-text-question{
+  border: 0;
+  background: none;
+  outline: 0;
+  color: rgb(0, 0, 0);
+  margin: 20px 0;
+  display:block;
+  width: 100%;
+  padding: 5px 0;
+  margin-right: 10%;
+  transition: .2s;
+  border-bottom: 1px solid rgb(114, 114, 114);
+}
+
+
+/*general setting for table*/
+
+table{
+  border-radius: 10px;
+}
+
+table .tbHead{
+  background-image: linear-gradient(to bottom right,
+  #FAD7A1,
+  #FAD7A1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

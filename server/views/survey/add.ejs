@@ -4,69 +4,94 @@
 
 <main class="containter">
     <div class="row">
-        <div class="offset-md-1 col-md-10">
+        <div class="takeSurveyContainer">
             <h1><%= userSurvey.Title %></h1>
 
             <!-- Create Date and Expire Date-->
             <div>
-                <h6><%= userSurvey.CreateDate %> / <%= userSurvey.ExpireDate %> </h6>
+                <h6><%= userSurvey.CreateDate.getUTCMonth()+1 +"/" + userSurvey.CreateDate.getUTCDate() +"/" + userSurvey.CreateDate.getUTCFullYear()%>
+                    -
+                    <%= userSurvey.ExpireDate.getUTCMonth()+1 +"/" + userSurvey.ExpireDate.getUTCDate() +"/" + userSurvey.ExpireDate.getUTCFullYear() %>
+                </h6>
             </div>
-            <div>
-                <p><%= userSurvey.Questions %> </p>
-                <p><%= (Object.keys(userSurvey.Questions).length) %> </p>
-
-                <form method="POST" autocomplete="off">
-                    <!-- user survey content-->
-                    <%// for(let c = 0; c < (Object.keys(userSurvey.Questions).length); c++) {%>
+            <div class="takeContainer">
+                <% if (typeof userSurvey.Questions == "object") {%>
+                <div>
+                    <form method="POST" autocomplete="off">
+                        <!-- user survey content-->
+                        <%// for(let c = 0; c < (Object.keys(userSurvey.Questions).length); c++) {%>
                         <% let ocOptName; %>
-                        <% let mcOptName; %>  
-                    <% for (const [key, value] of Object.entries(userSurvey.Questions)) {%>
+                        <% let mcOptName; %>
+                        <% for (const [key, value] of Object.entries(userSurvey.Questions)) {%>
 
-                    <!-- user survey text field -->
-                    <% if (key.includes("textQuestion")) {%>
-                    <fieldset class="form-group">
-                        <label for="<%= key %>"><%= value %></label>
-                        <input type="text" class="form-control" id="textField<%= key %>" name="<%= key %>">
-                    </fieldset>
+                        <!-- user survey text field -->
+                        <% if (key.includes("textQuestion")) {%>
+                        <div class="take-test-question-container">
+                            <label for="<%= key %>"><%= value %></label>
+                            <input type="text" class="take-text-question" id="textField<%= key %>" name="<%= key %>" required>
+                        </div>
 
-                    <!-- user survey one choice field -->
-                    <% } else if ( key.includes("ocQuestion")) {%>
-                        <% ocOptName = key; %> 
-                        <fieldset class="form-group">
+                        <!-- user survey one choice field -->
+                        <% } else if ( key.includes("ocQuestion")) {%>
+                        <% ocOptName = key; %>
+                        <div class="take-oCquestion-container">
                             <label for=""><%= value %></label>
-                    <% } else if (key.includes("ocOption")) {%>
-                        <% for (let i = 0; i < value.length; i++) {%>
-                            <input type="radio" class="form-control" id="<%= value[i] %>" name="<%= ocOptName %>" value="<%= value[i] %>">
-                            <label for="<%= value[i] %>"><%= value[i] %> </label>
-                            <br>
-                        <% } %>
-                        <% ocOptName = ""; %> 
-                    </fieldset>
-
-                    <!-- user survey multiple choice field -->
-                    <% } else if (key.includes("mcQuestion")) {%>
-                        <% mcOptName = key; %> 
-                        <fieldset class="form-group">
-                            <label for="radioButtonField<%= key %>"><%= value %></label>
-                    <% } else if (key.includes("mcOption")) {%>
+                            <% } else if (key.includes("ocOption")) {%>
                             <% for (let i = 0; i < value.length; i++) {%>
-                                <input type="checkbox" class="form-control" id="<%= value[i] %>" name="<%= mcOptName %>" value="<%= value[i] %>">
-                                <label for="<%= value[i] %>"><%= value[i] %> </label>
+                            <div class="take-option-container">
+                                <input type="radio" class="take-oCquestion-options" id="<%= value[i] %>"
+                                    name="<%= ocOptName %>" value="<%= value[i] %>" required>
+                                <label for="<%= value[i] %>" class="take-oCquestion-options-label"><%= value[i] %>
+                                </label>
                                 <br>
+                            </div>
                             <% } %>
-                            <% mcOptName = ""; %> 
-                    <% } %> 
-                    </fieldset>
-                    <% } %>
+                            <% ocOptName = ""; %>
+                        </div>
 
-                    <button class="btn btn-outline-success" type="submit">
-                        <i class="fas fa-edit"></i> Submit</button>
+                        <!-- user survey multiple choice field -->
+                        <% } else if (key.includes("mcQuestion")) {%>
+                        <% mcOptName = key; %>
+                        <div class="take-test-question-container">
+                            <label for="radioButtonField<%= key %>"><%= value %></label>
+                        <% } else if (key.includes("mcOption")) {%>
+                            <% for (let i = 0; i < value.length; i++) {%>
+                            <div class="take-option-container">
+                                <input type="checkbox" class="take-mCquestion-options" id="<%= value[i] %>"
+                                    name="<%= mcOptName %>" value="<%= value[i] %>">
+                                <label for="<%= value[i] %>" class="take-oCquestion-options-label"><%= value[i] %>
+                                </label>
+                                <br>
+                            </div>
+                            <% } %>
+                        </div>
+                            <% mcOptName = ""; %>
 
-                    <a href="/survey-list" class="btn btn-outline-warning">
-                        <i class="fas fa-undo"></i> Cancel</a>
+                        <% } %>
 
-                </form>
+                        <% } %>
 
+                        <div class="btnUpdate-container">
+                            <ul class="btnOptUl">
+                                <li class="liOpt" id="updateOpt">
+                                    <button class="btnCreateSurvey" type="submit">
+                                        <i class="fas fa-edit"></i></button>
+                                    </i>
+                                    <span class="tooltiptext">Submit Survey</span>
+                                </li>
+                                <li class="liOpt" id="cancelOpt">
+                                    <a href="/survey-list" class="btnCancelSurvey">
+                                        <i class="fas fa-undo"></i></a>
+                                    <span class="tooltiptext">Cancel</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </form>
+                </div>
+                <% } else { %>
+                <p>Sorry This Survey is empty</p>
+                <% } %>
             </div>
         </div>
     </div>
