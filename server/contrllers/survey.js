@@ -86,6 +86,14 @@ module.exports.processAddPage = (req, res, next) => {
         else {
             let respond = {};
             let surveyTitle;
+            let completedPeople = survey.CompletedPeople + 1;
+
+            userSurvey.updateOne({_id:id}, {CompletedPeople: completedPeople},(err)=>{
+                if (err) {
+                    console.log(err);
+                    res.end(err);
+                }
+            })
 
             surveyTitle = survey.Title;
 
