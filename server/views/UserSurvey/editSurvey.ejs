@@ -6,9 +6,9 @@
 <!-- Edit My survey Content -->
 <main class="containter">
     <div class="row">
-        <div class="offset-md-1 col-md-10">
+        <div class="editSurveyContainer">
 
-            <div>
+            <div class="editContainer">
                 <form method="POST" autocomplete="off">
 
                     <h1>
@@ -17,7 +17,8 @@
 
                     <!-- Create Date and Expire Date-->
                     <div>
-                        <h6><%= userSurvey.CreateDate %> / <%= userSurvey.ExpireDate %> </h6>
+                        <h6><%= userSurvey.CreateDate.getUTCMonth()+1 +"/" + userSurvey.CreateDate.getUTCDate() +"/" + userSurvey.CreateDate.getUTCFullYear()%> - <%= userSurvey.ExpireDate.getUTCMonth()+1 +"/" + userSurvey.ExpireDate.getUTCDate() +"/" + userSurvey.ExpireDate.getUTCFullYear() %> </h6>
+                        
                     </div>
 
                     <!-- user survey content-->
@@ -25,46 +26,62 @@
 
                         <!-- user survey text field -->
                         <% if (key.includes("textQuestion")) {%>
-                        <fieldset class="form-group">
-                            <input type="text" class="form-control" id="textField<%= key %>" name="<%= key %>" value="<%= value %> ">
-                        </fieldset>
+                        <div class="edit-test-question-container">
+                            <input type="text" class="edit-text-question" id="textField<%= key %>" name="<%= key %>" value="<%= value %> ">
+                        </div>
     
                         <!-- user survey one choice field -->
                         <% } else if ( key.includes("ocQuestion")) {%>
-                            <fieldset class="form-group">
-                                <input type="text" class="form-control" id="ocField<%= key %>" name="<%= key %>" value="<%= value %> ">
+                            <div class="edit-oCquestion-container">
+                                <input type="text" class="edit-oCquestion" id="ocField<%= key %>" name="<%= key %>" value="<%= value %> ">
                         <% } else if (key.includes("ocOption")) {%>
                             <% for (let i = 0; i < value.length; i++) {%>
-                                <input type="radio" class="form-control" id="<%= value[i] %>"
-                                    name="<%= key %> " value="<%= value[i] %>" disabled>
-                                    <input type="text" class="form-control" id="ocOptField<%= key %>" name="<%= key %>" value="<%= value[i] %> ">
+                                <div class="edit-option-container">
+                                    <label>Option<%= i+1 %>: </label>
+                                    <input type="text" class="edit-oCquestion-options" id="ocOptField<%= key %>" name="<%= key %>" value="<%= value[i] %> ">
+                                </div>
                                 <br>
                             <% } %>
-                        </fieldset>
+                            </div>
     
                         <!-- user survey multiple choice field -->
                         <% } else if (key.includes("mcQuestion")) {%>
-                            <fieldset class="form-group">
-                                <input type="text" class="form-control" id="mcField<%= key %>" name="<%= key %>" value="<%= value %> ">
+                            <div class="edit-test-question-container">
+                                <input type="text" class="edit-mCquestion" id="mcField<%= key %>" name="<%= key %>" value="<%= value %> ">
                         <% } else if (key.includes("mcOption")) {%>
                                 <% for (let i = 0; i < value.length; i++) {%>
-                                    <input type="checkbox" class="form-control" id="<%= value[i] %>"
-                                        name="<%= value[i] %> " value="<%= value[i] %>" disabled>
-                                        <input type="text" class="form-control" id="mcOptField<%= key %>" name="<%= key %>" value="<%= value[i] %> ">
+                                    <div class="edit-option-container">
+                                        <label>Option<%= i+1 %>: </label>
+                                        <input type="text" class="edit-mCquestion-container" id="mcOptField<%= key %>" name="<%= key %>" value="<%= value[i] %> ">
+                                    </div>
                                     <br>
                                 <% } %>
+                            </div>
                         <% } %> 
-                        </fieldset>
-                        <% } %>
+                        
+                    <% } %>
 
-                    <button class="btn btn-outline-success" type="submit">
-                        <i class="fas fa-edit"></i> Update</button>
+                    <div class="btnUpdate-container">
+                        <ul class="btnOptUl">
+                            <li class="liOpt" id="updateOpt">
+                                <button class="btnCreateSurvey" type="submit">
+                                    <i class="fas fa-edit"></i></button>
+                                </i>
+                                <span class="tooltiptext">Update Survey</span>
+                            </li>
+                            <li class="liOpt" id="cancelOpt">
+                                <a href="/my-survey" class="btnCancelSurvey">
+                                    <i class="fas fa-undo"></i></a>
+                                <span class="tooltiptext">Cancel</span>
+                            </li>
+                            <li class="liOpt" id="deletOpt">
+                                <a href="/my-survey/delete/<%= userSurvey._id %>" class="btnCancelSurvey">
+                                    <i class="fas fa-trash-alt"></i></a>
+                                <span class="tooltiptext">Delete Survey</span>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <a href="/my-survey" class="btn btn-outline-warning">
-                        <i class="fas fa-undo"></i> Cancel</a>
-
-                    <a href="/my-survey/delete/<%= userSurvey._id %>" class="btn btn-outline-danger" id="deleteBtn">
-                        <i class="fas fa-trash-alt"></i> Delete</a>
                 </form>
             </div>
         </div>

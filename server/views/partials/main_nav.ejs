@@ -15,7 +15,7 @@
           <% } else { %>
         <li class="nav-item">
           <% } %>
-          <a class="nav-link" href="/home"><i class="fas fa-laptop-house"></i>Home</a>
+          <a class="nav-link" href="/home"><i class="fas fa-laptop-house"></i> Home</a>
         </li>
 
         <% if (title == "Survey") { %>
@@ -23,7 +23,7 @@
           <% }else {%>
         <li class="nav-item">
           <% } %>
-          <a class="nav-link" href="/survey-list"><i class="fas fa-poll-h"></i>Survey</a>
+          <a class="nav-link" href="/survey-list"><i class="fas fa-poll-h"></i> Survey</a>
         </li>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,15 +33,21 @@
               <% } else { %>
             <li class="nav-item">
               <% } %>
-              <a class="nav-link" href="/contact"><i class="fas fa-laptop-house"></i>Contact</a>
+              <a class="nav-link" href="/contact"><i class="fas fa-laptop-house"></i> Contact</a>
             </li>
           </ul>
         </div>
 
         <% if(typeof displayName == 'string' && displayName) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="/my-survey">My Survey</a>
+        <% if (title=="My Survey") {%> 
+        <li class="nav-item active">
+        <% } else { %>
+          <li class="nav-item">
+          <% } %> 
+          <a class="nav-link" href="/my-survey"><i class="fas fa-server"></i> My Survey</a>
         </li>
+
+
         <li class="navbar-text"><i class="fas fa-lg fa-user"></i> Welcome, <%= displayName %></li>
         <li class="nav-item"><a href="/logout" class="nav-link">
             <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>

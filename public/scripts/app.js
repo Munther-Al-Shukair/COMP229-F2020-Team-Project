@@ -42,7 +42,7 @@ var addMC = document.getElementById("addMCInput");
 addText.onclick = function () {
 
     var container = document.createElement("div");
-    container.className = "test-question-container";
+    container.className = "test-question-container d-flex";
 
     //important
     var textInput = document.createElement("input");
@@ -50,11 +50,13 @@ addText.onclick = function () {
     textInput.name = "textQuestion" + textCount;
     textInput.type = "text";
     textInput.placeholder = "Enter a question";
+    textInput.required = true;
 
     var removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.id = "removeItemBtn";
     removeBtn.textContent = "Remove";
+    removeBtn.className="btn btn-outline-danger"
     removeBtn.onclick = function () { qContainer.removeChild(container) };
 
 
@@ -80,12 +82,13 @@ addOC.onclick = function () {
     textInput.className = "test-question-input";
     textInput.type = "text";
     textInput.placeholder = "Enter the question";
+    textInput.required=true;
 
     var removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.id = "removeItemBtn";
     removeBtn.textContent = "Remove";
-
+    removeBtn.className="btn btn-outline-danger";
     removeBtn.onclick = function () { qContainer.removeChild(container) };
 
     var optionContainer = document.createElement("div");
@@ -95,6 +98,7 @@ addOC.onclick = function () {
     addQuestionOption.type = "button";
     addQuestionOption.id = "addQuestionOption";
     addQuestionOption.textContent = "Add Option";
+    addQuestionOption.className="btn btn-outline-info";
 
     var ooContainer = document.createElement("div");
     ooContainer.className = "inner-option-list";
@@ -103,12 +107,14 @@ addOC.onclick = function () {
 
         var option = document.createElement("input");
         option.type = "radio";
+        option.className="inputRadiobtn";
         option.name = textInput.textContent;
 
         
         var textLabel = document.createElement("input");
         textLabel.type = "text";
         textLabel.placeholder = "Enter you option";
+        textLabel.required=true;
         //important
         textLabel.name = "ocOption" + (ocCount-1);
 
@@ -119,14 +125,14 @@ addOC.onclick = function () {
         removeOptBtn.type = "button";
         removeOptBtn.id = "removeOptBtn";
         removeOptBtn.textContent = "Remove Option";
-
+        removeOptBtn.className="btn btn-outline-danger"
         removeOptBtn.onclick = function () {
-            ooContainer.removeChild(option);
+            //ooContainer.removeChild(option);
             ooContainer.removeChild(textLabel);
             ooContainer.removeChild(removeOptBtn);
         };
 
-        ooContainer.appendChild(option);
+        //ooContainer.appendChild(option);
         ooContainer.appendChild(textLabel);
         ooContainer.appendChild(removeOptBtn);
 
@@ -154,12 +160,13 @@ addMC.onclick = function () {
     textInput.name = "mcQuestion" + mcCount;
     textInput.type = "text";
     textInput.placeholder = "Enter the question";
+    textInput.required=true;
 
     var removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.id = "removeItemBtn";
     removeBtn.textContent = "Remove";
-
+    removeBtn.className="btn btn-outline-danger"
     removeBtn.onclick = function () { qContainer.removeChild(container) };
 
     var optionContainer = document.createElement("div");
@@ -169,6 +176,7 @@ addMC.onclick = function () {
     addQuestionOption.type = "button";
     addQuestionOption.id = "addQuestionOption";
     addQuestionOption.textContent = "Add Option";
+    addQuestionOption.className="btn btn-outline-info";
 
     var ooContainer = document.createElement("div");
     ooContainer.className = "inner-option-list";
@@ -177,12 +185,14 @@ addMC.onclick = function () {
 
         var option = document.createElement("input");
         option.type = "checkbox";
+        option.className="inputCheckbox";
         
         //important
         var textLabel = document.createElement("input");
         textLabel.type = "text";
         textLabel.name = "mcOption" + (mcCount-1);
         textLabel.placeholder = "Enter you option";
+        textLabel.required=true;
 
         option.id = textLabel.textContent;
         option.value = textLabel.textContent;
@@ -192,14 +202,14 @@ addMC.onclick = function () {
         removeOptBtn.type = "button";
         removeOptBtn.id = "removeOptBtn";
         removeOptBtn.textContent = "Remove Option";
-
+        removeOptBtn.className="btn btn-outline-danger"
         removeOptBtn.onclick = function () {
-            ooContainer.removeChild(option);
+            //ooContainer.removeChild(option);
             ooContainer.removeChild(textLabel);
             ooContainer.removeChild(removeOptBtn);
         };
 
-        ooContainer.appendChild(option);
+        //ooContainer.appendChild(option);
         ooContainer.appendChild(textLabel);
         ooContainer.appendChild(removeOptBtn);
 

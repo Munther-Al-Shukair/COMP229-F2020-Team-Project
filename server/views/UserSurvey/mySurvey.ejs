@@ -8,10 +8,10 @@
     <div class="row">
         <div class="offset-md-1 col-md-10">
             <h1>My Survey</h1>
-            <table class="table table-borderless table-hover rounded-lg shadow-sm">
+            <table class="table table-borderless table-hover rounded-lg shadow-lg table-striped">
 
                 <!-- Header -->
-                <tr class="d-flex">
+                <tr class="d-flex tbHead">
 
                     <th class="text-center col-3">Survey Tilte</th>
                     <th class="text-center col-2">Create Date</th>
@@ -29,24 +29,24 @@
                 <tr class="d-flex">
 
                     <td class="text-center col-3"><%= userSurveyList[c].Title %></td>
-                    <td class="text-center col-2"><%= userSurveyList[c].CreateDate %></td>
-                    <td class="text-center col-2"><%= userSurveyList[c].ExpireDate %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].CreateDate.getUTCMonth()+1 +"/" +userSurveyList[c].CreateDate.getUTCDate()+ "/"+ userSurveyList[c].CreateDate.getUTCFullYear() %></td>
+                    <td class="text-center col-2"><%= userSurveyList[c].ExpireDate.getUTCMonth()+1 +"/" +userSurveyList[c].ExpireDate.getUTCDate()+ "/"+ userSurveyList[c].ExpireDate.getUTCFullYear() %></td>
                     <td class="text-center col-2"><%= userSurveyList[c].CompletedPeople %></td>
                     <td class="text-center col-1"> <a href="/my-survey/view/<%= userSurveyList[c]._id %>"
-                            class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i> View </a></td>
+                            class="btn btn-outline-primary btn-sm">
+                            <i class="far fa-eye"></i> View </a></td>
                     <td class="text-center col-1"> <a href="/my-survey/edit/<%= userSurveyList[c]._id %>"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-outline-info btn-sm">
                             <i class="fas fa-pencil-alt"></i> Edit </a></td>
                     <td class="text-center col-1"> <a href="/my-survey/delete/<%= userSurveyList[c]._id %>"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-outline-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete </a></td>
                 </tr>
                 <% } %>
             </table>
 
             <div class="d-flex">
-                <a href="/my-survey/create-survey">
+                <a href="/my-survey/create-survey" class="mx-auto">
                     <button type="button" class="btn btn-outline-info mx-auto rounded-circle">
                         <i class="fas fa-plus"></i></button>
                 </a>

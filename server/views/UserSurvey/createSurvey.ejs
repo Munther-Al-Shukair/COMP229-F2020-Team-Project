@@ -7,38 +7,58 @@
 <main class="containter">
     <div class="row">
         <div class="csAllContainer">
-            <!-- Create Date and Expire Date-->
-            <div>
-                <h6><%= new Date(); %></h6>
-            </div>
+            
             <div>
                 <form method="POST" autocomplete="off">
                     <h1>
-                        <input type="text" id="ddsurveyTitle" name="surveyTitle" placeholder="Survey Title">
+                        <input type="text" id="ddsurveyTitle" name="surveyTitle" placeholder="Survey Title" required>
                     </h1>
-                    <input type="text" name="exipireDate" id="ddexipireDate" placeholder="Expire Date">
+                    <!--<input type="text" name="exipireDate" id="ddexipireDate" placeholder="Expire Date">-->
 
                     <!-- user survey content-->
 
                     <div id="qContainer"></div>
 
-                    <div class="d-flex btn-container">
-                        <select id="add" size="3">
-                            <option id="addTextInput">Text Answer</option>
-                            <option id="addOCInput">One Choice Answer</option>
-                            <option id="addMCInput">Multiple Choice Answer</option>
-                        </select>
-                        <button class="btn rounded-circle" id="addComponent">
-                            <i class="fas fa-plus" id="plus"></i><i class="fas fa-sort-down" id="down"></i>
-                        </button>
+                    <div class="btnOpt-container">
+                        <ul class="btnOptUl">
+                            <li class="liOpt" id="addTextInput">
+                                <i class="fas fa-paragraph"></i>
+                                <span class="tooltiptext">Add Short Answer Question</span>
+                            </li>
+                            <li class="liOpt" id="addOCInput">
+                                <i class="fas fa-dot-circle"></i>
+                                <span class="tooltiptext">Add One Choice Question</span>
+                            </li>
+                            <li class="liOpt" id="addMCInput">
+                                <i class="far fa-square"></i>
+                                <span class="tooltiptext">Add Multiple Choice Question</span>
+                            </li>
+                        </ul>
                     </div>
 
+                    <div class="btnUpdate-container">
+                        <ul class="btnOptUl">
+                            <li class="liOpt" id="updateOpt">
+                                <button class="btnCreateSurvey" type="submit">
+                                    <i class="fas fa-edit"></i></button>
+                                </i>
+                                <span class="tooltiptext">Create Survey</span>
+                            </li>
+                            <li class="liOpt" id="cancelOpt">
+                                <a href="/my-survey" class="btnCancelSurvey">
+                                    <i class="fas fa-undo"></i></a>
+                                <span class="tooltiptext">Cancel</span>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <!--
                     <button class="btn btn-outline-success" type="submit">
                         <i class="fas fa-edit"></i> Update</button>
 
                     <a href="/my-survey" class="btn btn-outline-warning">
                         <i class="fas fa-undo"></i> Cancel</a>
+                    -->
                 </form>
             </div>
         </div>
