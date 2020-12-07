@@ -114,7 +114,9 @@ module.exports.displayCreatePage = (req, res, next) => {
 
 //process create page
 module.exports.processCreatePage = (req,res,next)=>{
-    let currentDate = new Date();
+    let currentDate = new Date();    
+    let expireDate = new Date();
+    expireDate.setMonth(expireDate.getMonth()+6);
     let questions = Object.assign({},req.body);
     delete questions.surveyTitle;
     delete questions.exipireDate;
@@ -124,7 +126,7 @@ module.exports.processCreatePage = (req,res,next)=>{
         "CreatorID":req.user._id,
         "CreatorName": req.user.displayName,
         "CreateDate": currentDate,
-        "ExpireDate": currentDate,
+        "ExpireDate": expireDate,
         "CompletedPeople": 0,
         "Questions": questions
     });
